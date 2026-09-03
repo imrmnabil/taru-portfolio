@@ -1,8 +1,8 @@
 import { Projects } from "@/types/contents.types";
-import { projects } from "@/resources/content";
 import { RiArrowRightUpLine } from "react-icons/ri";
 import ViewLink from "./ui/view-link";
-import ExportedImage from "next-image-export-optimizer";
+import ExportedImage from "@/components/ui/exported-image";
+import Markdown from "react-markdown";
 
 const ProjectCard = ({ project }: { project: Projects }) => {
   return (
@@ -38,9 +38,9 @@ const ProjectCard = ({ project }: { project: Projects }) => {
             </div>
           )}
         </div>
-        <p className="text-secondary flex-grow text-sm sm:text-base">
-          {project.description}
-        </p>
+        <div className="text-secondary flex-grow text-sm sm:text-base">
+          <Markdown>{project.description}</Markdown>
+        </div>
         {project.links && project.links.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-2">
             {project.links.map((link, index) => (
@@ -53,12 +53,17 @@ const ProjectCard = ({ project }: { project: Projects }) => {
   );
 };
 
-const ProjectsSection = () => {
+interface ProjectsSectionProps {
+  heading: string;
+  items: Projects[];
+}
+
+const ProjectsSection = ({ heading, items }: ProjectsSectionProps) => {
   return (
     <div className="h-fit">
-      <h2 className="text-2xl font-medium mb-8">Projects</h2>
+      <h2 className="text-2xl font-medium mb-8">{heading}</h2>
       <div className="grid md:grid-cols-2 gap-8">
-        {projects.map((project, index) => (
+        {items.map((project, index) => (
           <ProjectCard key={index} project={project} />
         ))}
       </div>

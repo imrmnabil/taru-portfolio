@@ -1,8 +1,8 @@
 import React from 'react'
 import { useForm, ValidationError } from '@formspree/react';
 
-const ContactForm = () => {
-    const [state, handleSubmit] = useForm("xnngwkrv");
+const ContactForm = ({ formspreeId }: { formspreeId: string }) => {
+    const [state, handleSubmit] = useForm(formspreeId);
     
     React.useEffect(() => {
         if (state.succeeded) {

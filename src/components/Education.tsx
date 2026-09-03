@@ -1,16 +1,20 @@
-import { education } from "@/resources/content";
 import { Education } from "@/types/contents.types";
 import Link from "next/link";
 import React from "react";
 import { BiMap } from "react-icons/bi";
 import { RiArrowRightUpLine } from "react-icons/ri";
 
-const EducationSection = () => {
+interface EducationSectionProps {
+  heading: string;
+  items: Education[];
+}
+
+const EducationSection = ({ heading, items }: EducationSectionProps) => {
   return (
     <div>
-      <h2 className="text-2xl font-medium mb-8">Education</h2>
+      <h2 className="text-2xl font-medium mb-8">{heading}</h2>
       <div className="flex flex-col gap-6 sm:gap-12">
-        {education.map((edu, index) => (
+        {items.map((edu, index) => (
           <EducationCard key={index} education={edu} />
         ))}
       </div>

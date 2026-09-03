@@ -1,5 +1,4 @@
 'use client'
-import { social } from '@/resources/content'
 import Link from 'next/link'
 import React from 'react'
 import { IconBase } from 'react-icons'
@@ -7,8 +6,9 @@ import Icon from './Icon'
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import 'animate.css/animate.min.css';
+import type { Social as SocialType } from '@/types/contents.types'
 
-const Social = () => {
+const Social = ({ social }: { social: SocialType }) => {
     return (
         <div className='flex gap-[15px]'>
             {social.map((item) => (

@@ -1,4 +1,3 @@
-import { publications } from "@/resources/content";
 import { Publication } from "@/types/contents.types";
 import Link from "next/link";
 import ViewLink from "./ui/view-link";
@@ -93,7 +92,12 @@ const PublicationCard = ({
   );
 };
 
-const PublicationSection = () => {
+interface PublicationSectionProps {
+  heading: string;
+  items: Publication[];
+}
+
+const PublicationSection = ({ heading, items }: PublicationSectionProps) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
@@ -102,9 +106,9 @@ const PublicationSection = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-medium mb-8">Publications</h2>
+      <h2 className="text-2xl font-medium mb-8">{heading}</h2>
       <div className="flex flex-col sm:gap-6 gap-3">
-        {publications.map((publication, index) => (
+        {items.map((publication, index) => (
           <PublicationCard
             key={index}
             index={index}

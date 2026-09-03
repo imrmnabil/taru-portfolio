@@ -1,7 +1,7 @@
 'use client'
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Section, SectionsDict } from "@/types/sections.types";
+import { Section } from "@/types/sections.types";
 
 // export const SlideTabsExample = ({ activeSection }: { activeSection?: string }) => {
 //   return (

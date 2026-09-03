@@ -1,0 +1,25 @@
+items:
+- name: GRE
+  logo: /images/gre.png
+  scores:
+  - label: Overall
+    value: '311'
+  - label: Quant
+    value: '163'
+  - label: Verbal
+    value: '148'
+  - label: AWA
+    value: '3.5'
+- name: IELTS
+  logo: /images/ielts.png
+  scores:
+  - label: Overall
+    value: '8.0'
+  - label: Listening
+    value: '8.5'
+  - label: Reading
+    value: '9'
+  - label: Writing
+    value: '7'
+  - label: Speaking
+    value: '7'

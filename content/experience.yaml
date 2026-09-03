@@ -1,0 +1,28 @@
+items:
+- position: Lecturer
+  company: Sonargaon University
+  companyLink: https://su.edu.bd/
+  startDate: May 2025
+  endDate: Present
+  location: Dhaka, Bangladesh
+  type: Full-time
+  description: I teach core courses including AI, OOP (Java & C++), Numerical Methods, Computer Architecture, and Information System Analysis and Design, Technical Writing and Seminar. I guide collaborative lab sessions for related theories and handle academic responsibilities such as attending meetings, curriculum design, invigilation, evaluation, and research supervision.
+  bullets: []
+- position: Creative Executive
+  company: Reflective Teens - RT
+  companyLink: https://www.reflectiveteens.com/
+  startDate: Jul 2022
+  endDate: Feb 2025
+  location: Remote
+  type: Full-time
+  description: Creative ideation, graphic content designing, and promoting impactful social duties targeting development of teenagers.
+  bullets: []
+- position: Intern
+  company: Amreen Info Tech Ltd
+  companyLink: https://amreenit.com/
+  startDate: Dec 2023
+  endDate: Jan 2024
+  location: Khulna, Bangladesh
+  type: Full-time
+  description: Completed a two-week internship at Amreen Info Tech Limited, gaining hands-on experience in developing a taxation website for Khulna City Corporation using Laravel, PHP, and MySQL.
+  bullets: []
