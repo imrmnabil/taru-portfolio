@@ -152,11 +152,8 @@ the menu can say "Work" while the page says "Experience".
 Upload images through the editor — don't copy files into folders by hand. The
 editor puts them in the right place and records the filename for you.
 
-The preview shows new images immediately.
-
-> **Before you publish**, always run `npm run build`. Your site compresses images
-> into fast, modern versions, and that only happens during a build. A photo added
-> since the last build won't be optimised until you run one.
+The preview shows new images immediately, and they are compressed into fast,
+modern versions automatically when you publish — you don't need to do anything.
 
 ---
 
@@ -164,17 +161,7 @@ The preview shows new images immediately.
 
 Saving writes files onto your computer. It does **not** update the public site.
 
-To publish:
-
-```bash
-npm run build
-```
-
-This produces a finished site in the `out/` folder, which is what gets uploaded
-to your host.
-
-Your edits are also ordinary files tracked by Git, so commit and push them to
-keep a history:
+To publish, send your changes to GitHub:
 
 ```bash
 git add .
@@ -182,8 +169,12 @@ git commit -m "Update achievements"
 git push
 ```
 
-Ask whoever set up your hosting how `out/` reaches the web — the project doesn't
-include an automatic deployment step.
+That's all. GitHub rebuilds the site and puts it online by itself, usually within
+a couple of minutes. You can watch it on the **Actions** tab of the repository —
+a green tick means it's live.
+
+> You never need to run a build yourself. If the tick goes red, nothing was
+> published and the site carries on as it was; send the error to a developer.
 
 ---
 
@@ -194,7 +185,8 @@ Something is half-finished — often a list item with an empty required field.
 Finish or delete it and the preview catches up.
 
 **A new photo doesn't appear on the published site**
-Run `npm run build` and publish again. See [About images](#about-images).
+Give it a couple of minutes — publishing isn't instant. If it still hasn't
+appeared, check the **Actions** tab for a red tick.
 
 **The preview looks out of date**
 Click **Refresh preview** at the top right.

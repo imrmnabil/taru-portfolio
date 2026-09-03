@@ -108,9 +108,24 @@ deploying.
 
 ## Deployment
 
-`npm run build` writes a static site to `out/`. The repo pins no host — there is
-no `vercel.json`, `netlify.toml`, or CI workflow — so `out/` is uploaded by
-whatever process you already use.
+Every push to `main` builds and publishes to GitHub Pages via
+[.github/workflows/deploy.yml](.github/workflows/deploy.yml). It runs `npm ci`,
+`npm run build`, and uploads `out/`.
+
+The workflow also fails the build if anything matching `keystatic`, `studio`,
+`preview`, or `api` appears in `out/` — the CMS must never ship to a public URL,
+and that guard is what keeps the `pageExtensions` trick honest.
+
+**One-time setup:** repo *Settings → Pages → Source: **GitHub Actions***.
+
+**The site is built for the domain root** (no `basePath`). That is correct for a
+user site — a repo named `<user>.github.io` — or a custom domain. If it is ever
+served from a project subpath such as `user.github.io/taru-portfolio`, add
+`basePath` and `assetPrefix` to [next.config.ts](next.config.ts), or every asset
+will 404 and the page will render unstyled.
+
+`KEYSTATIC` is deliberately left unset in CI: that is what keeps `output:
+"export"` on and drops the CMS routes.
 
 ## Stack
 

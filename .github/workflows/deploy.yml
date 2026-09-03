@@ -1,0 +1,67 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Lets you re-deploy from the Actions tab without pushing a commit.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never cancel a deploy that is already publishing; queue behind it instead.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # KEYSTATIC is deliberately unset here: that is what makes next.config.ts
+      # keep `output: "export"` and drop the CMS-only routes from the build.
+      - name: Build static site
+        run: npm run build
+
+      - name: Verify the CMS did not ship
+        run: |
+          if find out \( -iname '*keystatic*' -o -iname '*studio*' \
+                        -o -iname '*preview*' -o -name api \) \
+                  -print -quit | grep -q .; then
+            echo "::error::CMS routes leaked into the static export."
+            exit 1
+          fi
+          test -f out/index.html
+
+      # Pages serves the uploaded artifact directly rather than running Jekyll,
+      # but this guarantees nothing ever strips Next's _next/ directory.
+      - name: Disable Jekyll processing
+        run: touch out/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
