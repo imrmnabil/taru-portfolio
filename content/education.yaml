@@ -1,0 +1,25 @@
+items:
+- degree: BSc in Computer Science & Engineering
+  institution: Khulna University
+  institutionLink: https://ku.ac.bd/
+  startDate: '2019'
+  endDate: '2025'
+  location: Khulna, Bangladesh
+  grade: 3.91 out of 4.00
+  achievements: []
+- degree: Higher Secondary Certificate
+  institution: Bheramara College
+  institutionLink: https://bheramaracollege.jessoreboard.gov.bd/
+  startDate: '2016'
+  endDate: '2018'
+  location: Bheramara, Kushtia
+  grade: 5.00 out of 5.00
+  achievements: []
+- degree: Secondary School Certificate
+  institution: Bheramara Secondary Girls School
+  institutionLink: https://bheramarasecondarygirlsschool.jessoreboard.gov.bd/
+  startDate: '2011'
+  endDate: '2016'
+  location: Bheramara, Kushtia
+  grade: 5.00 out of 5.00
+  achievements: []

@@ -1,0 +1,41 @@
+title: Tarunnyamoye Kundu
+description: Portfolio of Tarunnyamoye Kundu - Lecturer, Researcher, and Lifelong Learner.
+sections:
+  - id: intro
+    navLabel: Intro
+    heading: ""
+    enabled: true
+  - id: work
+    navLabel: Work
+    heading: Experience
+    enabled: true
+  - id: education
+    navLabel: Education
+    heading: Education
+    enabled: true
+  - id: publications
+    navLabel: Publications
+    heading: Publications
+    enabled: true
+  - id: projects
+    navLabel: Projects
+    heading: Projects
+    enabled: true
+  - id: achievements
+    navLabel: Achievements
+    heading: Achievements
+    enabled: true
+  - id: contact
+    navLabel: Contact
+    heading: Let's Talk
+    enabled: true
+showcase:
+  achievementCount: 2
+  projectCount: 3
+labels:
+  downloadCv: Download CV
+  showcaseAchievements: Acheivements
+  showcaseProjects: Projects
+  reachOut: Reach Out
+  testScores: Test Scores
+formspreeId: xnngwkrv

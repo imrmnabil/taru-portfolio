@@ -1,25 +1,17 @@
-import React, { use, useEffect } from 'react'
-import { achievements, projects} from '@/resources/content'
-import { Achievements, Projects } from '@/types/contents.types'
-import Image from 'next/image'
-import Markdown from 'react-markdown'
-import { MarkdownComponents } from '@/resources/markdown-components'
+import React, { useEffect } from 'react'
+import { Achievements, Projects, SiteLabels } from '@/types/contents.types'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import Fade from 'embla-carousel-fade'
 import AnimatedDownArrow from './ui/animated-down'
-import ExportedImage from 'next-image-export-optimizer'
+import ExportedImage from "@/components/ui/exported-image";
 
 interface FeatureCardProps {
     achievements: Achievements
     index?: number
 }
 
-
-
 const AchievementCard = ({ achievements, index }: FeatureCardProps) => {
-
-
     return (
         <div style={{
             boxShadow: 'rgba(0, 0, 0, 0.05) 0px 2.5px 12px 0px',
@@ -40,7 +32,7 @@ const AchievementCard = ({ achievements, index }: FeatureCardProps) => {
                         </div>
                         <div className="absolute flex w-full h-full bottom-0 left-0 bg-gradient-to-tr from-slate-600 via-transparent to-transparent text-white p-4">
                             <div className='w-1/2 h-fit self-end p-2'>
-                                <Markdown components={MarkdownComponents} >{achievements.title}</Markdown>
+                                <h2 className="sm:text-2xl text-lg font-semibold">{achievements.title}</h2>
                             </div>
                         </div>
                     </div>
@@ -62,14 +54,21 @@ const ProjectCard = ({ project }: { project: Projects }) => {
                 className="w-full h-full object-cover "
                 fill
             /> )}
-            
+
         </div>
     )
 };
 
-const ShowcaseSection = () => {
+interface ShowcaseSectionProps {
+    achievements: Achievements[]
+    projects: Projects[]
+    showcase: { achievementCount: number; projectCount: number }
+    labels: SiteLabels
+}
+
+const ShowcaseSection = ({ achievements, projects, showcase, labels }: ShowcaseSectionProps) => {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay(), Fade()]);
-    const [embleRef2, emblaApi2] = useEmblaCarousel({ loop: true }, [Autoplay(), Fade()]);
+    const [embleRef2] = useEmblaCarousel({ loop: true }, [Autoplay(), Fade()]);
     const scrollToAchievements = () => {
         const element = document.getElementById('achievements_section');
         if (element) {
@@ -94,7 +93,7 @@ const ShowcaseSection = () => {
                 <div className="sm:basis-2/3 overflow-hidden h-full w-full relative" >
                     <div ref={emblaRef}>
                         <div className='flex h-full ' >
-                            {achievements.slice(0, 2).map((achievement, index) => (
+                            {achievements.slice(0, showcase.achievementCount).map((achievement, index) => (
                                 <div key={index} className="flex-[0_0_100%] min-w-0 relative h-full">
                                     <AchievementCard index={index} key={index} achievements={achievement} />
                                 </div>
@@ -104,7 +103,7 @@ const ShowcaseSection = () => {
                     <div className="absolute right-4 bottom-4 flex items-center justify-between">
 
                         <button className="bg-white rounded-full sm:px-4 px-3 sm:py-3 py-2 shadow-md flex gap-2 cursor-pointer hover:opacity-80 sm:text-base text-sm" onClick={scrollToAchievements}>
-                            <span className="material-icons">Acheivements</span>
+                            <span className="material-icons">{labels.showcaseAchievements}</span>
                             <AnimatedDownArrow />
                         </button>
                     </div>
@@ -112,7 +111,7 @@ const ShowcaseSection = () => {
                 <div className="sm:basis-1/3 sm:flex flex-col gap-6 h-full w-full relative hidden">
                     <div className='w-full  h-full' ref={embleRef2}>
                         <div className='flex h-full ' >
-                            {projects.slice(0, 3).map((project, index) => (
+                            {projects.slice(0, showcase.projectCount).map((project, index) => (
                                 <div key={index} className="flex-[0_0_100%] min-w-0 relative h-full">
                                     <ProjectCard key={index} project={project} />
                                 </div>
@@ -122,7 +121,7 @@ const ShowcaseSection = () => {
                     <div className="absolute right-4 bottom-4 flex items-center justify-between">
 
                         <button className="bg-white rounded-full px-4 py-3 shadow-md flex gap-2 cursor-pointer hover:opacity-80" onClick={scrollToProjects}>
-                            <span className="material-icons">Projects</span>
+                            <span className="material-icons">{labels.showcaseProjects}</span>
                             <AnimatedDownArrow />
                         </button>
                     </div>

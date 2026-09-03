@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getSiteMeta } from "@/lib/content";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 
@@ -17,10 +18,9 @@ const outfit= Outfit({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Tarunnyamoye Kundu",
-  description: "Portfolio of Tarunnyamoye Kundu - Lecturer, Researcher, and Lifelong Learner.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return await getSiteMeta();
+}
 
 export default function RootLayout({
   children,

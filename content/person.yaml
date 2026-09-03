@@ -1,0 +1,32 @@
+firstname: Tarunnyamoye
+lastname: Kundu
+role: Lecturer
+location: Dhaka, Bangladesh
+heroTitle: Hey, I'm Tarunnyamoye Kundu.
+heroDescription: >-
+  ​I'm a Lecturer in CSE and AI/ML researcher with experience in smart systems
+  and computer vision. My vision is to continually grow my expertise by pursuing
+  advanced opportunities in higher study and research.
+avatar: /images/avatar.jpeg
+avatarWidth: 200
+avatarHeight: 200
+cv: /pdfs/cv.pdf
+email: tarunnyamoye1917@gmail.com
+phone: '+8801751297196'
+timezone: America/Regina
+whatsapp:
+  link: https://wa.me/1751297196
+  number: '+8801751297196'
+social:
+  - name: LinkedIn
+    icon: linkedin
+    link: https://www.linkedin.com/in/tarunnyamoye/
+  - name: Facebook
+    icon: facebook
+    link: https://www.facebook.com/tarunnyamoye.tarunnya
+  - name: GitHub
+    icon: github
+    link: https://github.com/tarunnya17
+  - name: Google Scholar
+    icon: scholar
+    link: https://scholar.google.com/citations?user=2t9uwFUAAAAJ

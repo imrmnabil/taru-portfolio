@@ -1,24 +1,19 @@
-import React, { useEffect } from 'react'
-import { achievements } from '@/resources/content'
-import { Achievements } from '@/types/contents.types'
-import Image from 'next/image'
+import React from 'react'
+import { Achievements, TestScore } from '@/types/contents.types'
 import Markdown from 'react-markdown'
 import { MarkdownComponents } from '@/resources/markdown-components'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import TestScores from './TestScores'
-import ExportedImage from 'next-image-export-optimizer'
+import ExportedImage from "@/components/ui/exported-image";
 
 interface FeatureCardProps {
     achievements: Achievements
     index?: number
 }
 
-
-
-
 const FeatureCard = ({ achievements, index }: FeatureCardProps) => {
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
+    const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()])
 
     return (
         <div style={{
@@ -26,7 +21,7 @@ const FeatureCard = ({ achievements, index }: FeatureCardProps) => {
         }}
          className={`w-full flex flex-col-reverse sm:h-100 ` + (index && index % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row') + ' items-center bg-white rounded-xl relative overflow-hidden'}>
             <div className="sm:basis-[40%] p-5 sm:p-10">
-                <Markdown components={MarkdownComponents}>{achievements.title}</Markdown>
+                <h2 className="sm:text-2xl text-lg font-semibold">{achievements.title}</h2>
                 <div className="mt-2">
                     <Markdown components={MarkdownComponents}>{achievements.content}</Markdown>
                 </div>
@@ -56,17 +51,24 @@ const FeatureCard = ({ achievements, index }: FeatureCardProps) => {
     )
 }
 
-const FeatureSection = () => {
+interface FeatureSectionProps {
+    heading: string
+    achievements: Achievements[]
+    testScores: TestScore[]
+    testScoresHeading: string
+}
+
+const FeatureSection = ({ heading, achievements, testScores, testScoresHeading }: FeatureSectionProps) => {
     return (
         <div>
-            <h2 className="text-2xl font-medium mb-8">Achievements</h2>
+            <h2 className="text-2xl font-medium mb-8">{heading}</h2>
             <div className="flex flex-col gap-8">
                 {achievements.map((achievement, index) => (
                     <FeatureCard index={index} key={index} achievements={achievement} />
                 ))}
             </div>
             <div className="mt-8">
-                <TestScores />
+                <TestScores heading={testScoresHeading} items={testScores} />
             </div>
         </div>
     )

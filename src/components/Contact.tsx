@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import RealTime from './ui/real-time'
 import { BiCopy, BiLogoWhatsapp, BiPhoneCall } from 'react-icons/bi'
-import { contact } from '@/resources/content'
 import { IconBase } from 'react-icons'
 import Icon from './Icon'
 import ContactForm from './ContactForm'
+import type { Contact } from '@/types/contents.types'
 
-const ContactSection = () => {
+interface ContactSectionProps {
+    heading: string
+    contact: Contact
+    reachOutLabel: string
+    formspreeId: string
+}
+
+const ContactSection = ({ heading, contact, reachOutLabel, formspreeId }: ContactSectionProps) => {
     const [copied, setCopied] = useState(false)
 
     const handleCopy = () => {
@@ -17,7 +24,7 @@ const ContactSection = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-medium mb-8 ">Let's Talk</h2>
+            <h2 className="text-2xl font-medium mb-8 ">{heading}</h2>
             <div className='flex gap-4   justify-between sm:flex-row flex-col-reverse'>
                 <div className='flex flex-col sm:gap-6 gap-3 border-secondary border-l pl-4'>
                     <div className='flex gap-2 items-center'>
@@ -67,8 +74,8 @@ const ContactSection = () => {
                 </div>
                 <div className='flex flex-col gap-3 w-full max-w-xl'>
                     {/* Placeholder for a contact form or additional content */}
-                    <h3>Reach Out</h3>
-                    <ContactForm />
+                    <h3>{reachOutLabel}</h3>
+                    <ContactForm formspreeId={formspreeId} />
                 </div>
             </div>
         </div>

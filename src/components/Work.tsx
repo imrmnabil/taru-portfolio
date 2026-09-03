@@ -1,16 +1,20 @@
 import React from "react";
-import { workExperience } from "@/resources/content";
 import { Work } from "@/types/contents.types";
 import { BiMap } from "react-icons/bi";
 import Link from "next/link";
 import { RiArrowRightUpLine } from "react-icons/ri";
 
-const WorkSection = () => {
+interface WorkSectionProps {
+  heading: string;
+  items: Work[];
+}
+
+const WorkSection = ({ heading, items }: WorkSectionProps) => {
   return (
     <div>
-      <h2 className="text-2xl font-medium mb-8">Experience</h2>
+      <h2 className="text-2xl font-medium mb-8">{heading}</h2>
       <div className="flex flex-col gap-6 sm:gap-12">
-        {workExperience.map((work, index) => (
+        {items.map((work, index) => (
           <WorkCard key={index} work={work} />
         ))}
       </div>
